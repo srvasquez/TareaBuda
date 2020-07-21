@@ -1,4 +1,4 @@
-from red import Station, Red
+from reader import load_file
 
 
 if __name__ == "__main__":

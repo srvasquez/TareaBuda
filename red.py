@@ -5,7 +5,6 @@ class Station:
         self.color = color
         self.conections = []
      
-    
     def __str__(self):
         return f"Nombre estación: {self.name} \nConexiones: {', '.join(i.name for i in self.conections)}"
 
