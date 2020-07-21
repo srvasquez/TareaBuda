@@ -1,9 +1,10 @@
 class Station:
 
-    def __init__(self, name, color, conections = []):
+    def __init__(self, name, color):
         self.name = name
         self.color = color
-        self.conections = conections
+        self.conections = []
+     
     
     def __str__(self):
         return f"Nombre estación: {self.name} \nConexiones: {', '.join(i.name for i in self.conections)}"
@@ -20,12 +21,24 @@ class Red:
     def __init__(self, stations):
         self.stations = stations
 
+    def __str__(self):
+        line = "-"*18
+        stations_information = f'\n{line}\n'.join(str(station) for station in self.stations)
+        return f"Estaciones:\n\n{stations_information}"
+
+    def append(self, station):
+        self.stations.append(station)
+
 
 if __name__ == "__main__":
-    a = Station('a', 'red')
-    b = Station('b', 'blank')
-    c = Station('c', 'green')
+    
+    a = Station('A', 'red')
+    b = Station('B', 'blank')
+    c = Station('C', 'green')
+
     a.append(b)
-    #a.append(c)
-    print(a)
-    print(len(a))
+    a.append(c)
+
+    red = Red([a, b, c])
+    print(red)
+
