@@ -1,18 +1,24 @@
+import numpy as np
+
+
 class Station:
 
     def __init__(self, name, color):
         self.name = name
         self.color = color
-        self.conections = []
+        self.conections = np.array([])
      
-    def __str__(self):
+    def details(self):
         return f"Nombre estación: {self.name} \nConexiones: {', '.join(i.name for i in self.conections)}"
 
+    def __str__(self):
+        return self.name
+
     def __len__(self):
-        return len(self.conections)
+        return self.conections.shape[0]
 
     def append(self, station):
-        self.conections.append(station)
+        self.conections = np.append(self.conections, station)
 
 
 class Red:
@@ -22,22 +28,23 @@ class Red:
 
     def __str__(self):
         line = "-"*18
-        stations_information = f'\n{line}\n'.join(str(station) for station in self.stations)
-        return f"Estaciones:\n\n{stations_information}"
+        stations_information = f'\n{line}\n'.join(station.details() for station in self.stations)
+        return f"Estaciones\n{line}\n{stations_information}\n{line}"
 
     def append(self, station):
-        self.stations.append(station)
+        self.stations = np.append(self.stations, station)
 
 
 if __name__ == "__main__":
     
     a = Station('A', 'red')
     b = Station('B', 'blank')
-    c = Station('C', 'green')
+    c = Station('C', 'white')
 
     a.append(b)
     a.append(c)
 
     red = Red([a, b, c])
     print(red)
+
 
