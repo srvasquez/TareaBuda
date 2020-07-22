@@ -17,7 +17,7 @@ def solve_path(start_station, goal_station, vagon_color, visited):
             actual_station = open_queque.pop(0)
             visited[actual_station]['visited'] = True
             if str(actual_station) == goal_station:
-                    return True
+                    return actual_station
             for station in actual_station.get_conections():
                 if visited[station]['visited']:
                     continue

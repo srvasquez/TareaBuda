@@ -56,12 +56,20 @@ class Red:
         for station in self.stations:
             if str(station) == start_station:
                 visited = self.initialize_visited()
-                if solve_path(station, goal_station, vagon_color, visited):
-                    for i in visited:
-                        print(i, visited[i]['parent'])
+                final_station = solve_path(station, goal_station, vagon_color, visited)
+                if final_station:
+                    path = []
+                    while visited[final_station]['parent']:
+                        color_station = final_station.get_color()
+                        if color_station == 'white' or vagon_color == 'white' or vagon_color == color_station or str(final_station) == goal_station:
+                            path.insert(0, str(final_station))
+                        final_station = visited[final_station]['parent']
+                    path.insert(0, start_station)
+                    return path
                 else:
-                    print("no se llego a solucion uwu")
+                    return false
     
+
 if __name__ == "__main__":
     
     a = Station('A', 'red')
@@ -75,6 +83,6 @@ if __name__ == "__main__":
 
     red = Red(np.array([a, b, c]))
     print(red)
-    red.search_path("B", "A", "white")
+    print("->".join(red.search_path("B", "A", "white")))
 
 

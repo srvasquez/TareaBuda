@@ -26,9 +26,8 @@ if __name__ == "__main__":
     name_file, start_station, goal_station, vagon_color = recieve_params()
     number_stations, name_stations, color_stations, conections = load_file(name_file)
     red = generate_red(number_stations, name_stations, color_stations, conections)
-    print(vagon_color)
-    red.search_path("A", "F", "green")
-    #print(red)
+    print("->".join(red.search_path(start_station, goal_station, vagon_color)))
+
     
     
 
